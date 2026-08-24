@@ -1,5 +1,5 @@
  # the albums
-album = {"House of Balloons (2011)":{}
+albums = {"House of Balloons (2011)":{}
          "Thursday (2011)":{}
          "Echoes of Silence (2011)":{}
          "Kiss Land (2013)"{}
@@ -25,13 +25,26 @@ else:
                         3. Filter by album 
                         "))
          if user_action == 1:
-             the_album = str(input("Enter the album "))
-             the_song = str(input("Enter the song :"))
-             the_rating = str(input("Enter you rating of the song :"))
+             the_album = str(input("Enter the album name L "))
+             the_song = str(input("Enter the song name  :"))
+             the_rating = str(input("Enter you rating of the song name :"))
              the_url = str(input("Enter the URL :"))
-             the_song = {"{the_rating}, {the_url}"} 
-            
-            
+             the_song_details = {"{the_rating}, {the_url}"} 
+             
+            albums[the_album][the_song].append(the_song_details)
+        elif user_action == 2:
+            print(albums)
+        elif user_action == 3:
+            the_album = str(input("Enter the album name "))
+            for key in albums[the_album]:
+                print(key)
+        else:
+            print("Bro choose 1/2/3 there is nothing much to do right now ")
+
+
+
+
+
 
                                  
 
