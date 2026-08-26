@@ -188,21 +188,4 @@ The project is "finished" when:
 4. All API keys are securely stored in `.env` and audio files are gitignored.
 5. The entire system is split across the optimal file tree, with a passing test suite.
 
----
 
-## THINKING QUESTIONS (Answer before coding)
-
-1. How will I structure my SQLite schema so that an unreleased track (no official album) doesn't break the relational mapping between Albums and Tracks?
-2. If the LLM decides to call the `play_song` tool, how does my Python code actually execute the audio file in the background without freezing the agent loop?
-3. How will I securely store my OpenAI API key and Spotify API key so they are never pushed to GitHub?
-4. If the Planner creates a 5-step playlist generation plan, but Step 3 fails because a song is missing from the database, does the Executor abort the whole plan, or ask the Planner to try a different route?
-5. How much conversation history should I send to the LLM? (If I send 50 past messages, it will be expensive and slow. If I send 1, it loses context).
-6. How will I prevent the LLM from executing a "delete_all" command if a user types "delete all my songs"?
-
----
-
-## IDEAS WITHOUT IMPLEMENTATION
-
-- **BPM-Matched Crossfading:** Have the agent automatically order the playlist so that the BPM transitions smoothly from one song to the next.
-- **Era-Based DJing:** Tag songs by "Era" (House of Balloons, Trilogy, Starboy, After Hours, Dawn FM) and let the agent plan sets that tell a story across eras.
-- **Leak Tracker:** A tool that checks a specific API or subreddit for new unreleased tracks and automatically adds them to your database.
