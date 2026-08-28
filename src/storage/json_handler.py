@@ -1,12 +1,29 @@
 import json
-import os
+from pathlib import Path
 from dataclasses import asdict
 from ..models.track import Track
 
-def load_tracks():
-    if not os.path.exist("I will fill it later with the actual path "):
-        return []
-    try:
-        with open("the name or path ", "r") as f:
+DATA_FILE = Path(__file__).parent.parent.parent / "data" / "tracks.json"
 
-            
+def load_tracks():
+    if not DATA_FILE.exists():
+        return []
+    
+    try:
+        with open(DATA_FILE, "r") as f:
+            data = json.load(f)
+        
+        tracks = [Track(**item) for item in data]
+        return tracks
+    
+    except json.JSONDecodeError:
+        print("Warning: tracks.json is corrupted. Starting fresh.")
+        return []
+
+def save_tracks(tracks):
+    data = [asdict(track) for track in tracks]
+    
+    with open(DATA_FILE, "w") as f:
+        json.dump(data, f, indent=2)
+    
+    print(f"Saved {len(tracks)} songs to tracks.json")
